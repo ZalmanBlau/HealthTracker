@@ -1,4 +1,5 @@
 $(function() {
+  debugger
   $("select#group").change(function(){
     sendFoodRequest($("#group").val())
   });
