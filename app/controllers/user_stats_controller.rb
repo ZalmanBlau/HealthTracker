@@ -25,7 +25,6 @@ class UserStatsController < ApplicationController
   # POST /user_stats
   # POST /user_stats.json
   def create
-    binding.pry
     form_data = {
       # hour * 60 (converting hours to minutes)
       "calories" => user_stat_params["calories"].to_i,

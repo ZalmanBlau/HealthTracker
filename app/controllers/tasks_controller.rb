@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all
     @new_task = Task.new
-    # binding.pry
+
     respond_to do |format|
       # format.html { redirect_to tasks_path }
       format.html { render :index }

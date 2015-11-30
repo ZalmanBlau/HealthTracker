@@ -29,7 +29,6 @@ class AppointmentsController < ApplicationController
   def responseblake
 
     @appointments = Appointment.where(user_id: current_user.id)
-    # binding.pry
     render "responseblake.json"
     
   end

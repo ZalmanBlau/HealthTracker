@@ -7,7 +7,6 @@ class RoutinesController < ApplicationController
 
   def symptom_check
     symptoms = params[:symptoms].gsub(", ", ",").split(",")
-    binding.pry
     respond_to do |format|
        format.json { render json: SymptomChecker.possible_illnesses(symptoms).uniq }
      end
