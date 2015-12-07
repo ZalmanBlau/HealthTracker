@@ -20,7 +20,7 @@ class PrescriptionsController < ApplicationController
 
   def most_recent
   begin
-    @prescription = Prescription.where(user_id = current_user.id).last
+    @prescription = Prescription.where("user_id = ?" current_user.id).last
     puts "prescription found! line 23"
     if @prescription.nil?
       render plain: "none"
