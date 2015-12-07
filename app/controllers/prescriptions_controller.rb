@@ -18,13 +18,16 @@ class PrescriptionsController < ApplicationController
   end
 
   def most_recent
+  begin
     @prescription = Prescription.where(user_id = current_user.id).last
     if @prescription.nil?
       render plain: "none"
     else
-      render plain: "none"
-      # render "show.json"
+      render "show.json"
     end
+  rescue StandardError => e
+    puts e.message
+  end
   end
 
   def refill 
