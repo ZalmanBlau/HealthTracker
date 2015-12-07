@@ -1,0 +1,2051 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+
+*/
+/*!
+ * FullCalendar v2.4.0 Stylesheet
+ * Docs & License: http://fullcalendar.io/
+ * (c) 2015 Adam Shaw
+ */
+
+
+
+.fc {
+	direction: ltr;
+	text-align: left;
+}
+
+.fc-rtl {
+	text-align: right;
+}
+
+body .fc { /* extra precedence to overcome jqui */
+	font-size: 1em;
+}
+
+
+/* Colors
+--------------------------------------------------------------------------------------------------*/
+
+.fc-unthemed th,
+.fc-unthemed td,
+.fc-unthemed thead,
+.fc-unthemed tbody,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-row,
+.fc-unthemed .fc-popover {
+	border-color: #ddd;
+}
+
+.fc-unthemed .fc-popover {
+	background-color: #fff;
+}
+
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-popover .fc-header {
+	background: #eee;
+}
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+	color: #666;
+}
+
+.fc-unthemed .fc-today {
+	background: #fcf8e3;
+}
+
+.fc-highlight { /* when user is selecting cells */
+	background: #bce8f1;
+	opacity: .3;
+	filter: alpha(opacity=30); /* for IE */
+}
+
+.fc-bgevent { /* default look for background events */
+	background: rgb(143, 223, 130);
+	opacity: .3;
+	filter: alpha(opacity=30); /* for IE */
+}
+
+.fc-nonbusiness { /* default look for non-business-hours areas */
+	/* will inherit .fc-bgevent's styles */
+	background: #d7d7d7;
+}
+
+
+/* Icons (inline elements with styled text that mock arrow icons)
+--------------------------------------------------------------------------------------------------*/
+
+.fc-icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	line-height: 1em;
+	font-size: 1em;
+	text-align: center;
+	overflow: hidden;
+	font-family: "Courier New", Courier, monospace;
+
+	/* don't allow browser text-selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	}
+
+/*
+Acceptable font-family overrides for individual icons:
+	"Arial", sans-serif
+	"Times New Roman", serif
+
+NOTE: use percentage font sizes or else old IE chokes
+*/
+
+.fc-icon:after {
+	position: relative;
+	margin: 0 -1em; /* ensures character will be centered, regardless of width */
+}
+
+.fc-icon-left-single-arrow:after {
+	content: "\02039";
+	font-weight: bold;
+	font-size: 200%;
+	top: -7%;
+	left: 3%;
+}
+
+.fc-icon-right-single-arrow:after {
+	content: "\0203A";
+	font-weight: bold;
+	font-size: 200%;
+	top: -7%;
+	left: -3%;
+}
+
+.fc-icon-left-double-arrow:after {
+	content: "\000AB";
+	font-size: 160%;
+	top: -7%;
+}
+
+.fc-icon-right-double-arrow:after {
+	content: "\000BB";
+	font-size: 160%;
+	top: -7%;
+}
+
+.fc-icon-left-triangle:after {
+	content: "\25C4";
+	font-size: 125%;
+	top: 3%;
+	left: -2%;
+}
+
+.fc-icon-right-triangle:after {
+	content: "\25BA";
+	font-size: 125%;
+	top: 3%;
+	left: 2%;
+}
+
+.fc-icon-down-triangle:after {
+	content: "\25BC";
+	font-size: 125%;
+	top: 2%;
+}
+
+.fc-icon-x:after {
+	content: "\000D7";
+	font-size: 200%;
+	top: 6%;
+}
+
+
+/* Buttons (styled <button> tags, normalized to work cross-browser)
+--------------------------------------------------------------------------------------------------*/
+
+.fc button {
+	/* force height to include the border and padding */
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	/* dimensions */
+	margin: 0;
+	height: 2.1em;
+	padding: 0 .6em;
+
+	/* text & cursor */
+	font-size: 1em; /* normalize */
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+/* Firefox has an annoying inner border */
+.fc button::-moz-focus-inner { margin: 0; padding: 0; }
+	
+.fc-state-default { /* non-theme */
+	border: 1px solid;
+}
+
+.fc-state-default.fc-corner-left { /* non-theme */
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.fc-state-default.fc-corner-right { /* non-theme */
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+/* icons in buttons */
+
+.fc button .fc-icon { /* non-theme */
+	position: relative;
+	top: -0.05em; /* seems to be a good adjustment across browsers */
+	margin: 0 .2em;
+	vertical-align: middle;
+}
+	
+/*
+  button states
+  borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
+*/
+
+.fc-state-default {
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+	background-repeat: repeat-x;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	color: #333;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fc-state-hover,
+.fc-state-down,
+.fc-state-active,
+.fc-state-disabled {
+	color: #333333;
+	background-color: #e6e6e6;
+}
+
+.fc-state-hover {
+	color: #333333;
+	text-decoration: none;
+	background-position: 0 -15px;
+	-webkit-transition: background-position 0.1s linear;
+	   -moz-transition: background-position 0.1s linear;
+	     -o-transition: background-position 0.1s linear;
+	        transition: background-position 0.1s linear;
+}
+
+.fc-state-down,
+.fc-state-active {
+	background-color: #cccccc;
+	background-image: none;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fc-state-disabled {
+	cursor: default;
+	background-image: none;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	box-shadow: none;
+}
+
+
+/* Buttons Groups
+--------------------------------------------------------------------------------------------------*/
+
+.fc-button-group {
+	display: inline-block;
+}
+
+/*
+every button that is not first in a button group should scootch over one pixel and cover the
+previous button's border...
+*/
+
+.fc .fc-button-group > * { /* extra precedence b/c buttons have margin set to zero */
+	float: left;
+	margin: 0 0 0 -1px;
+}
+
+.fc .fc-button-group > :first-child { /* same */
+	margin-left: 0;
+}
+
+
+/* Popover
+--------------------------------------------------------------------------------------------------*/
+
+.fc-popover {
+	position: absolute;
+	box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+
+.fc-popover .fc-header { /* TODO: be more consistent with fc-head/fc-body */
+	padding: 2px 4px;
+}
+
+.fc-popover .fc-header .fc-title {
+	margin: 0 2px;
+}
+
+.fc-popover .fc-header .fc-close {
+	cursor: pointer;
+}
+
+.fc-ltr .fc-popover .fc-header .fc-title,
+.fc-rtl .fc-popover .fc-header .fc-close {
+	float: left;
+}
+
+.fc-rtl .fc-popover .fc-header .fc-title,
+.fc-ltr .fc-popover .fc-header .fc-close {
+	float: right;
+}
+
+/* unthemed */
+
+.fc-unthemed .fc-popover {
+	border-width: 1px;
+	border-style: solid;
+}
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+	font-size: .9em;
+	margin-top: 2px;
+}
+
+/* jqui themed */
+
+.fc-popover > .ui-widget-header + .ui-widget-content {
+	border-top: 0; /* where they meet, let the header have the border */
+}
+
+
+/* Misc Reusable Components
+--------------------------------------------------------------------------------------------------*/
+
+.fc-divider {
+	border-style: solid;
+	border-width: 1px;
+}
+
+hr.fc-divider {
+	height: 0;
+	margin: 0;
+	padding: 0 0 2px; /* height is unreliable across browsers, so use padding */
+	border-width: 1px 0;
+}
+
+.fc-clear {
+	clear: both;
+}
+
+.fc-bg,
+.fc-bgevent-skeleton,
+.fc-highlight-skeleton,
+.fc-helper-skeleton {
+	/* these element should always cling to top-left/right corners */
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.fc-bg {
+	bottom: 0; /* strech bg to bottom edge */
+}
+
+.fc-bg table {
+	height: 100%; /* strech bg to bottom edge */
+}
+
+
+/* Tables
+--------------------------------------------------------------------------------------------------*/
+
+.fc table {
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 1em; /* normalize cross-browser */
+}
+
+.fc th {
+	text-align: center;
+}
+
+.fc th,
+.fc td {
+	border-style: solid;
+	border-width: 1px;
+	padding: 0;
+	vertical-align: top;
+}
+
+.fc td.fc-today {
+	border-style: double; /* overcome neighboring borders */
+}
+
+
+/* Fake Table Rows
+--------------------------------------------------------------------------------------------------*/
+
+.fc .fc-row { /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */
+	/* no visible border by default. but make available if need be (scrollbar width compensation) */
+	border-style: solid;
+	border-width: 0;
+}
+
+.fc-row table {
+	/* don't put left/right border on anything within a fake row.
+	   the outer tbody will worry about this */
+	border-left: 0 hidden transparent;
+	border-right: 0 hidden transparent;
+
+	/* no bottom borders on rows */
+	border-bottom: 0 hidden transparent; 
+}
+
+.fc-row:first-child table {
+	border-top: 0 hidden transparent; /* no top border on first row */
+}
+
+
+/* Day Row (used within the header and the DayGrid)
+--------------------------------------------------------------------------------------------------*/
+
+.fc-row {
+	position: relative;
+}
+
+.fc-row .fc-bg {
+	z-index: 1;
+}
+
+/* highlighting cells & background event skeleton */
+
+.fc-row .fc-bgevent-skeleton,
+.fc-row .fc-highlight-skeleton {
+	bottom: 0; /* stretch skeleton to bottom of row */
+}
+
+.fc-row .fc-bgevent-skeleton table,
+.fc-row .fc-highlight-skeleton table {
+	height: 100%; /* stretch skeleton to bottom of row */
+}
+
+.fc-row .fc-highlight-skeleton td,
+.fc-row .fc-bgevent-skeleton td {
+	border-color: transparent;
+}
+
+.fc-row .fc-bgevent-skeleton {
+	z-index: 2;
+
+}
+
+.fc-row .fc-highlight-skeleton {
+	z-index: 3;
+}
+
+/*
+row content (which contains day/week numbers and events) as well as "helper" (which contains
+temporary rendered events).
+*/
+
+.fc-row .fc-content-skeleton {
+	position: relative;
+	z-index: 4;
+	padding-bottom: 2px; /* matches the space above the events */
+}
+
+.fc-row .fc-helper-skeleton {
+	z-index: 5;
+}
+
+.fc-row .fc-content-skeleton td,
+.fc-row .fc-helper-skeleton td {
+	/* see-through to the background below */
+	background: none; /* in case <td>s are globally styled */
+	border-color: transparent;
+
+	/* don't put a border between events and/or the day number */
+	border-bottom: 0;
+}
+
+.fc-row .fc-content-skeleton tbody td, /* cells with events inside (so NOT the day number cell) */
+.fc-row .fc-helper-skeleton tbody td {
+	/* don't put a border between event cells */
+	border-top: 0;
+}
+
+
+/* Scrolling Container
+--------------------------------------------------------------------------------------------------*/
+
+.fc-scroller { /* this class goes on elements for guaranteed vertical scrollbars */
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.fc-scroller > * { /* we expect an immediate inner element */
+	position: relative; /* re-scope all positions */
+	width: 100%; /* hack to force re-sizing this inner element when scrollbars appear/disappear */
+	overflow: hidden; /* don't let negative margins or absolute positioning create further scroll */
+}
+
+
+/* Global Event Styles
+--------------------------------------------------------------------------------------------------*/
+
+.fc-event {
+	position: relative; /* for resize handle and other inner positioning */
+	display: block; /* make the <a> tag block */
+	font-size: .85em;
+	line-height: 1.3;
+	border-radius: 3px;
+	border: 1px solid #3a87ad; /* default BORDER color */
+	background-color: #3a87ad; /* default BACKGROUND color */
+	font-weight: normal; /* undo jqui's ui-widget-header bold */
+}
+
+/* overpower some of bootstrap's and jqui's styles on <a> tags */
+.fc-event,
+.fc-event:hover,
+.ui-widget .fc-event {
+	color: #fff; /* default TEXT color */
+	text-decoration: none; /* if <a> has an href */
+}
+
+.fc-event[href],
+.fc-event.fc-draggable {
+	cursor: pointer; /* give events with links and draggable events a hand mouse pointer */
+}
+
+.fc-not-allowed, /* causes a "warning" cursor. applied on body */
+.fc-not-allowed .fc-event { /* to override an event's custom cursor */
+	cursor: not-allowed;
+}
+
+.fc-event .fc-bg { /* the generic .fc-bg already does position */
+	z-index: 1;
+	background: #fff;
+	opacity: .25;
+	filter: alpha(opacity=25); /* for IE */
+}
+
+.fc-event .fc-content {
+	position: relative;
+	z-index: 2;
+}
+
+.fc-event .fc-resizer {
+	position: absolute;
+	z-index: 3;
+}
+
+
+/* Horizontal Events
+--------------------------------------------------------------------------------------------------*/
+
+/* events that are continuing to/from another week. kill rounded corners and butt up against edge */
+
+.fc-ltr .fc-h-event.fc-not-start,
+.fc-rtl .fc-h-event.fc-not-end {
+	margin-left: 0;
+	border-left-width: 0;
+	padding-left: 1px; /* replace the border with padding */
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.fc-ltr .fc-h-event.fc-not-end,
+.fc-rtl .fc-h-event.fc-not-start {
+	margin-right: 0;
+	border-right-width: 0;
+	padding-right: 1px; /* replace the border with padding */
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+/* resizer */
+
+.fc-h-event .fc-resizer { /* positioned it to overcome the event's borders */
+	top: -1px;
+	bottom: -1px;
+	left: -1px;
+	right: -1px;
+	width: 5px;
+}
+
+/* left resizer  */
+.fc-ltr .fc-h-event .fc-start-resizer,
+.fc-ltr .fc-h-event .fc-start-resizer:before,
+.fc-ltr .fc-h-event .fc-start-resizer:after,
+.fc-rtl .fc-h-event .fc-end-resizer,
+.fc-rtl .fc-h-event .fc-end-resizer:before,
+.fc-rtl .fc-h-event .fc-end-resizer:after {
+	right: auto; /* ignore the right and only use the left */
+	cursor: w-resize;
+}
+
+/* right resizer */
+.fc-ltr .fc-h-event .fc-end-resizer,
+.fc-ltr .fc-h-event .fc-end-resizer:before,
+.fc-ltr .fc-h-event .fc-end-resizer:after,
+.fc-rtl .fc-h-event .fc-start-resizer,
+.fc-rtl .fc-h-event .fc-start-resizer:before,
+.fc-rtl .fc-h-event .fc-start-resizer:after {
+	left: auto; /* ignore the left and only use the right */
+	cursor: e-resize;
+}
+
+
+/* DayGrid events
+----------------------------------------------------------------------------------------------------
+We use the full "fc-day-grid-event" class instead of using descendants because the event won't
+be a descendant of the grid when it is being dragged.
+*/
+
+.fc-day-grid-event {
+	margin: 1px 2px 0; /* spacing between events and edges */
+	padding: 0 1px;
+}
+
+
+.fc-day-grid-event .fc-content { /* force events to be one-line tall */
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.fc-day-grid-event .fc-time {
+	font-weight: bold;
+}
+
+.fc-day-grid-event .fc-resizer { /* enlarge the default hit area */
+	left: -3px;
+	right: -3px;
+	width: 7px;
+}
+
+
+/* Event Limiting
+--------------------------------------------------------------------------------------------------*/
+
+/* "more" link that represents hidden events */
+
+a.fc-more {
+	margin: 1px 3px;
+	font-size: .85em;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a.fc-more:hover {
+	text-decoration: underline;
+}
+
+.fc-limited { /* rows and cells that are hidden because of a "more" link */
+	display: none;
+}
+
+/* popover that appears when "more" link is clicked */
+
+.fc-day-grid .fc-row {
+	z-index: 1; /* make the "more" popover one higher than this */
+}
+
+.fc-more-popover {
+	z-index: 2;
+	width: 220px;
+}
+
+.fc-more-popover .fc-event-container {
+	padding: 10px;
+}
+
+/* Toolbar
+--------------------------------------------------------------------------------------------------*/
+
+.fc-toolbar {
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.fc-toolbar .fc-left {
+	float: left;
+}
+
+.fc-toolbar .fc-right {
+	float: right;
+}
+
+.fc-toolbar .fc-center {
+	display: inline-block;
+}
+
+/* the things within each left/right/center section */
+.fc .fc-toolbar > * > * { /* extra precedence to override button border margins */
+	float: left;
+	margin-left: .75em;
+}
+
+/* the first thing within each left/center/right section */
+.fc .fc-toolbar > * > :first-child { /* extra precedence to override button border margins */
+	margin-left: 0;
+}
+	
+/* title text */
+
+.fc-toolbar h2 {
+	margin: 0;
+}
+
+/* button layering (for border precedence) */
+
+.fc-toolbar button {
+	position: relative;
+}
+
+.fc-toolbar .fc-state-hover,
+.fc-toolbar .ui-state-hover {
+	z-index: 2;
+}
+	
+.fc-toolbar .fc-state-down {
+	z-index: 3;
+}
+
+.fc-toolbar .fc-state-active,
+.fc-toolbar .ui-state-active {
+	z-index: 4;
+}
+
+.fc-toolbar button:focus {
+	z-index: 5;
+}
+
+
+/* View Structure
+--------------------------------------------------------------------------------------------------*/
+
+/* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */
+/* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */
+.fc-view-container *,
+.fc-view-container *:before,
+.fc-view-container *:after {
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+}
+
+.fc-view, /* scope positioning and z-index's for everything within the view */
+.fc-view > table { /* so dragged elements can be above the view's main element */
+	position: relative;
+	z-index: 1;
+}
+
+/* BasicView
+--------------------------------------------------------------------------------------------------*/
+
+/* day row structure */
+
+.fc-basicWeek-view .fc-content-skeleton,
+.fc-basicDay-view .fc-content-skeleton {
+	/* we are sure there are no day numbers in these views, so... */
+	padding-top: 1px; /* add a pixel to make sure there are 2px padding above events */
+	padding-bottom: 1em; /* ensure a space at bottom of cell for user selecting/clicking */
+}
+
+.fc-basic-view .fc-body .fc-row {
+	min-height: 4em; /* ensure that all rows are at least this tall */
+}
+
+/* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
+
+.fc-row.fc-rigid {
+	overflow: hidden;
+}
+
+.fc-row.fc-rigid .fc-content-skeleton {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+/* week and day number styling */
+
+.fc-basic-view .fc-week-number,
+.fc-basic-view .fc-day-number {
+	padding: 0 2px;
+}
+
+.fc-basic-view td.fc-week-number span,
+.fc-basic-view td.fc-day-number {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.fc-basic-view .fc-week-number {
+	text-align: center;
+}
+
+.fc-basic-view .fc-week-number span {
+	/* work around the way we do column resizing and ensure a minimum width */
+	display: inline-block;
+	min-width: 1.25em;
+}
+
+.fc-ltr .fc-basic-view .fc-day-number {
+	text-align: right;
+}
+
+.fc-rtl .fc-basic-view .fc-day-number {
+	text-align: left;
+}
+
+.fc-day-number.fc-other-month {
+	opacity: 0.3;
+	filter: alpha(opacity=30); /* for IE */
+	/* opacity with small font can sometimes look too faded
+	   might want to set the 'color' property instead
+	   making day-numbers bold also fixes the problem */
+}
+
+/* AgendaView all-day area
+--------------------------------------------------------------------------------------------------*/
+
+.fc-agenda-view .fc-day-grid {
+	position: relative;
+	z-index: 2; /* so the "more.." popover will be over the time grid */
+}
+
+.fc-agenda-view .fc-day-grid .fc-row {
+	min-height: 3em; /* all-day section will never get shorter than this */
+}
+
+.fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {
+	padding-top: 1px; /* add a pixel to make sure there are 2px padding above events */
+	padding-bottom: 1em; /* give space underneath events for clicking/selecting days */
+}
+
+
+/* TimeGrid axis running down the side (for both the all-day area and the slot area)
+--------------------------------------------------------------------------------------------------*/
+
+.fc .fc-axis { /* .fc to overcome default cell styles */
+	vertical-align: middle;
+	padding: 0 4px;
+	white-space: nowrap;
+}
+
+.fc-ltr .fc-axis {
+	text-align: right;
+}
+
+.fc-rtl .fc-axis {
+	text-align: left;
+}
+
+.ui-widget td.fc-axis {
+	font-weight: normal; /* overcome jqui theme making it bold */
+}
+
+
+/* TimeGrid Structure
+--------------------------------------------------------------------------------------------------*/
+
+.fc-time-grid-container, /* so scroll container's z-index is below all-day */
+.fc-time-grid { /* so slats/bg/content/etc positions get scoped within here */
+	position: relative;
+	z-index: 1;
+}
+
+.fc-time-grid {
+	min-height: 100%; /* so if height setting is 'auto', .fc-bg stretches to fill height */
+}
+
+.fc-time-grid table { /* don't put outer borders on slats/bg/content/etc */
+	border: 0 hidden transparent;
+}
+
+.fc-time-grid > .fc-bg {
+	z-index: 1;
+}
+
+.fc-time-grid .fc-slats,
+.fc-time-grid > hr { /* the <hr> AgendaView injects when grid is shorter than scroller */
+	position: relative;
+	z-index: 2;
+}
+
+.fc-time-grid .fc-bgevent-skeleton,
+.fc-time-grid .fc-content-skeleton {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.fc-time-grid .fc-bgevent-skeleton {
+	z-index: 3;
+}
+
+.fc-time-grid .fc-highlight-skeleton {
+	z-index: 4;
+}
+
+.fc-time-grid .fc-content-skeleton {
+	z-index: 5;
+}
+
+.fc-time-grid .fc-helper-skeleton {
+	z-index: 6;
+}
+
+
+/* TimeGrid Slats (lines that run horizontally)
+--------------------------------------------------------------------------------------------------*/
+
+.fc-time-grid .fc-slats td {
+	height: 1.5em;
+	border-bottom: 0; /* each cell is responsible for its top border */
+}
+
+.fc-time-grid .fc-slats .fc-minor td {
+	border-top-style: dotted;
+}
+
+.fc-time-grid .fc-slats .ui-widget-content { /* for jqui theme */
+	background: none; /* see through to fc-bg */
+}
+
+
+/* TimeGrid Highlighting Slots
+--------------------------------------------------------------------------------------------------*/
+
+.fc-time-grid .fc-highlight-container { /* a div within a cell within the fc-highlight-skeleton */
+	position: relative; /* scopes the left/right of the fc-highlight to be in the column */
+}
+
+.fc-time-grid .fc-highlight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	/* top and bottom will be in by JS */
+}
+
+
+/* TimeGrid Event Containment
+--------------------------------------------------------------------------------------------------*/
+
+.fc-time-grid .fc-event-container, /* a div within a cell within the fc-content-skeleton */
+.fc-time-grid .fc-bgevent-container { /* a div within a cell within the fc-bgevent-skeleton */
+	position: relative;
+}
+
+.fc-ltr .fc-time-grid .fc-event-container { /* space on the sides of events for LTR (default) */
+	margin: 0 2.5% 0 2px;
+}
+
+.fc-rtl .fc-time-grid .fc-event-container { /* space on the sides of events for RTL */
+	margin: 0 2px 0 2.5%;
+}
+
+.fc-time-grid .fc-event,
+.fc-time-grid .fc-bgevent {
+	position: absolute;
+	z-index: 1; /* scope inner z-index's */
+}
+
+.fc-time-grid .fc-bgevent {
+	/* background events always span full width */
+	left: 0;
+	right: 0;
+}
+
+
+/* Generic Vertical Event
+--------------------------------------------------------------------------------------------------*/
+
+.fc-v-event.fc-not-start { /* events that are continuing from another day */
+	/* replace space made by the top border with padding */
+	border-top-width: 0;
+	padding-top: 1px;
+
+	/* remove top rounded corners */
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.fc-v-event.fc-not-end {
+	/* replace space made by the top border with padding */
+	border-bottom-width: 0;
+	padding-bottom: 1px;
+
+	/* remove bottom rounded corners */
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+
+/* TimeGrid Event Styling
+----------------------------------------------------------------------------------------------------
+We use the full "fc-time-grid-event" class instead of using descendants because the event won't
+be a descendant of the grid when it is being dragged.
+*/
+
+.fc-time-grid-event {
+	overflow: hidden; /* don't let the bg flow over rounded corners */
+}
+
+.fc-time-grid-event .fc-time,
+.fc-time-grid-event .fc-title {
+	padding: 0 1px;
+}
+
+.fc-time-grid-event .fc-time {
+	font-size: .85em;
+	white-space: nowrap;
+}
+
+/* short mode, where time and title are on the same line */
+
+.fc-time-grid-event.fc-short .fc-content {
+	/* don't wrap to second line (now that contents will be inline) */
+	white-space: nowrap;
+}
+
+.fc-time-grid-event.fc-short .fc-time,
+.fc-time-grid-event.fc-short .fc-title {
+	/* put the time and title on the same line */
+	display: inline-block;
+	vertical-align: top;
+}
+
+.fc-time-grid-event.fc-short .fc-time span {
+	display: none; /* don't display the full time text... */
+}
+
+.fc-time-grid-event.fc-short .fc-time:before {
+	content: attr(data-start); /* ...instead, display only the start time */
+}
+
+.fc-time-grid-event.fc-short .fc-time:after {
+	content: "\000A0-\000A0"; /* seperate with a dash, wrapped in nbsp's */
+}
+
+.fc-time-grid-event.fc-short .fc-title {
+	font-size: .85em; /* make the title text the same size as the time */
+	padding: 0; /* undo padding from above */
+}
+
+/* resizer */
+
+.fc-time-grid-event .fc-resizer {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 8px;
+	overflow: hidden;
+	line-height: 8px;
+	font-size: 11px;
+	font-family: monospace;
+	text-align: center;
+	cursor: s-resize;
+}
+
+.fc-time-grid-event .fc-resizer:after {
+	content: "=";
+}
+ .draggable.active {
+    position: relative;
+    box-shadow: rgb(51, 51, 51) 7px 7px 2px;
+    margin-left: -8px;
+    margin-right: 8px;
+    z-index: auto;
+    left: 0px;
+    top: 0px;
+    background-color: rgb(27, 116, 177) !important;
+}
+h1.circle-title {
+	text-transform: uppercase;
+	margin-bottom:30px;
+}
+
+#circle-legend {
+    padding:15px;
+}
+
+.circle-chart {
+	position: relative;
+	padding-top:20px;
+}
+
+.legend-li-label {
+	font-size: 1.4em;
+}
+
+#circleChart-container {
+	pointer-events: none;
+}
+
+ul.circle-legend {
+	padding: 0;
+}
+
+.circle-body {
+	display: flex;
+	justify-content: space-between;
+}
+
+.circle-legend-li {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.legend-li-icon {
+	margin-right:10px;
+	height: 30px;
+    width: 30px;
+    border-radius: 7px;
+}
+
+.energized .legend-li-icon {
+	background: #10cc84;
+}
+
+.just-fine .legend-li-icon {
+	background: #1dc8e2;
+}
+
+.exhausted .legend-li-icon {
+	background: #b457f2;
+}
+
+.mildly-sick .legend-li-icon {
+	background: #ef7b45;
+}
+
+.very-sick .legend-li-icon {
+	background: #ed3b3b;
+}
+
+
+
+
+#circles-tab-contents {
+	position: relative;
+}
+
+
+#circle-users-storage {
+	display: none;
+}
+
+.member {
+	display: flex !important;
+	padding: 5px !important;
+}
+
+.panel .panel-control .nav-tabs li >  a {
+	margin-top: -2px !important;
+}
+
+img.member-img {
+	width: 50px;
+	height: 50px;
+}
+
+.member-name {
+	line-height: 50px;
+    font-size: 1.4em;
+    margin: 0 15px;
+}
+
+
+
+#circle-members {
+	width: 32%;
+    height: calc(72px * 4);
+    overflow: scroll;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+
+.member.energized {
+	border-left: 10px solid #10CC84 !important;
+}
+
+.member.just-fine {
+	border-left: 10px solid #1DC8E2 !important;
+}
+
+.member.exhausted {
+	border-left: 10px solid #B457F2 !important;
+}
+
+.member.mildly-sick {
+	border-left: 10px solid #EF7B45 !important;
+}
+
+.member.very-sick {
+	border-left: 10px solid #ED3B3B !important;
+}
+#new-appt {
+	background: #416173;
+	padding: 20px;
+	font-size: 16px;
+}
+
+#new-appt label {
+	color: #fff;
+	font-size:18px;
+}
+
+#new-appt h2 {
+	color: #fff;
+}
+
+#pending-events .draggable {
+	margin-left: -8px;
+	margin-right: 8px;
+	box-shadow: 8px 8px 6px #222;
+}
+
+
+#checkups-badges {
+	display: flex;
+	justify-content: space-around;
+}
+/*
+#checkups-badges .checkup {
+	width:25%;
+}*/
+
+
+#status-prompt {
+	padding: 80px 20px;
+    background: #27D0B1;
+    margin: 50px 10px !important;
+}
+
+#status-prompt h1 {
+	color: #fff;
+}
+
+#status-prompt select, 
+#status-prompt input[type="submit"] {
+	width: 100%;
+	margin:10px 0;
+}
+
+
+#side-nav>li {
+	margin-bottom: 1em;
+}
+
+.modal {
+  display: none;
+  width: 450px;
+  background: #fff;
+  padding: 15px 30px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
+  z-index:10 !important;
+  max-height: 340px !important;
+  -webkit-box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  -o-box-shadow: 0 0 10px #000;
+  -ms-box-shadow: 0 0 10px #000;
+  box-shadow: 0 0 10px #000;
+  background: #116AA7;
+  padding-top:20px;
+}
+
+.blocker {
+  z-index: 5 !important;
+  color: #fff;
+}
+
+.modal input[type="text"],
+.modal textarea,
+.modal input[type="submit"] {
+  width: 100%;
+}
+
+#modal-close {
+  background: #79FF79;
+  line-height: 30px;
+  border: 0;
+  color: #000;
+  width: 100%;
+  font-weight: 600;
+  transition: .2s all ease;
+  -webkit-transition: .2s all ease;
+  display: block;
+  text-align: center;
+}
+
+#modal-appt-type {
+  display:inline-block;
+}
+
+#modal-close:hover {
+  background: #19B319;
+}
+
+
+.modal label, .modal h2 {
+  color: #fff !important;
+}
+
+.modal a.close-modal {
+  position: absolute;
+  top: -12.5px;
+  right: -12.5px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  text-indent: -9999px;
+  background: url(close.png) no-repeat 0 0;
+}
+
+.modal-spinner {
+  display: none;
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-right: -32px;
+  margin-top: -32px;
+  background: url(spinner.gif) #111 no-repeat center center;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
+}
+/* line 6, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#edit-presc.pulsing {
+  box-shadow: 0 0 10px 5px #AED6FF;
+}
+
+/* line 10, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.invisible {
+  opacity: 0;
+}
+
+/* line 15, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.pulsing {
+  -webkit-animation: pulse 2s ease-out;
+  -moz-animation: pulse 2s ease-out;
+  animation: pulse 2s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+@-moz-keyframes pulse {
+  0% {
+    -moz-transform: scale(0);
+  }
+  25% {
+    -moz-transform: scale(0);
+  }
+  50% {
+    -moz-transform: scale(0.3);
+  }
+  75% {
+    -moz-transform: scale(2);
+    background-color: #65a6c6  !important;
+  }
+  100% {
+    -moz-transform: scale(1);
+    background-color: #65a6c6  !important;
+  }
+}
+@-webkit-keyframes "pulse" {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  25% {
+    -webkit-transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(0.3);
+  }
+  75% {
+    background-color: #65a6c6 !important;
+    -webkit-transform: scale(2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    background-color: #65a6c6  !important;
+  }
+}
+/* line 66, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.doc-message {
+  color: #fff;
+  padding: 15px;
+  margin: 0 10px;
+  background: rgba(255, 255, 255, 0.21);
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+/* line 75, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.panel {
+  position: relative;
+}
+
+/* line 79, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+img#doc {
+  width: 50%;
+  margin: 10px;
+}
+
+/* line 84, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#no-refills,
+#need-refill {
+  width: calc(100% - 100px);
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  height: 0;
+  transition: .5s height ease-out;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* line 98, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#need-refill {
+  background: #921E92;
+}
+
+/* line 99, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#no-refills {
+  background: #0096DC;
+}
+
+/* line 101, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#no-refills.active,
+#need-refill.active {
+  height: 100% !important;
+}
+
+/* line 106, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#fill {
+  transition: 1s height ease-out;
+}
+
+/* line 110, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#refill {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 21px;
+  line-height: 35px;
+  text-align: center;
+  margin: 0 auto;
+  transition: .2s background ease;
+  color: #222;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* line 126, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#refill.avail-ref {
+  line-height: 38px !important;
+  color: #FF1A1A !important;
+  background: white !important;
+}
+
+/* line 132, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#refill.avail-ref:hover {
+  color: #FF5858 !important;
+  cursor: pointer !important;
+}
+
+/* line 137, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#refills {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+  height: calc(170px);
+}
+
+/* line 145, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#pill-panel {
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  position: absolute;
+  right: 30px;
+  text-align: center;
+}
+
+/* line 154, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#edit-presc {
+  display: inline-block;
+  font-size: 25px;
+  color: #fff;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  background: rgba(128, 128, 128, 0.35);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  padding-left: 5px;
+  border-radius: 7px;
+  transition: .2s all ease;
+  position: relative;
+}
+
+/* line 171, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#edit-presc:hover {
+  background: #65a6c6;
+  cursor: pointer;
+}
+
+/* line 176, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#pill-bottle {
+  padding: 30px;
+  background: #0E334C;
+  position: relative;
+}
+
+/* line 182, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-reminder {
+  text-align: center;
+  color: #fff;
+  background: #C70000;
+  padding: 20px;
+  box-shadow: 0 0 10px 5px #FF6565;
+  font-size: 30px;
+}
+
+/* line 191, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#cap-top {
+  height: 20px;
+  width: 120px;
+  border-radius: 15px 15px 0 0;
+  margin: 0 auto;
+  background: white;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, white 46%, #fcfcfc 64%, #d1d1d1 100%, white 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(46%, white), color-stop(64%, #fcfcfc), color-stop(100%, #d1d1d1), color-stop(100%, white));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, white 46%, #fcfcfc 64%, #d1d1d1 100%, white 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, white 46%, #fcfcfc 64%, #d1d1d1 100%, white 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 204, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#cap-bottom {
+  display: flex;
+  margin: 0 auto;
+  width: 140px;
+  height: 25px;
+  background: #fff;
+  justify-content: space-between;
+  padding: 5px;
+  border-radius: 8px 8px 0 0;
+}
+
+/* line 215, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.ridge {
+  width: 6px;
+  background: gray;
+  border-radius: 3px;
+}
+
+/* line 223, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#bottle-body {
+  height: 200px;
+  background: #ffaa75;
+  width: 120px;
+  padding: 5px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: inset 0 10px 10px -8px #555;
+  overflow: hidden;
+  border-bottom: 5px solid  #ffaa75;
+}
+
+/* line 235, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#fill {
+  width: calc(100% - 10px);
+  background: #efefef;
+  position: absolute;
+  bottom: 0;
+}
+
+/* line 242, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.pill {
+  width: 50px;
+  height: 40px;
+  background: #ddd;
+  border-radius: 50%;
+  position: absolute;
+}
+
+/* line 250, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.pill1 {
+  transform: rotate(30deg) scale(0.93);
+  border-bottom: 5px solid #fff;
+  border-left: 5px solid #fff;
+  top: -5px;
+}
+
+/* line 257, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.pill2 {
+  left: 30px;
+  top: 30px;
+  transform: rotate(-30deg);
+  border-top: 5px solid #fff;
+  border-left: 5px solid #fff;
+}
+
+/* line 265, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.pill3 {
+  left: 60px;
+  top: -10px;
+  transform: rotate(40deg);
+  border-top: 5px solid #fff;
+  border-left: 5px solid #fff;
+}
+
+/* line 273, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+.pill4 {
+  left: 20px;
+  top: 90px;
+  transform: rotate(40deg) scale(0.9);
+  border-top: 3px solid #fff;
+  border-left: 3px solid #fff;
+}
+
+/* line 281, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-label {
+  background: #fff;
+  text-align: center;
+  transform: rotate(90deg);
+  position: absolute;
+  z-index: 1000;
+  right: -55px;
+  top: 90px;
+  width: 130px;
+  padding: 5px 15px;
+  box-shadow: 2px 1px 2px gray;
+  background: yellow;
+}
+
+/* line 295, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#pill-count {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  line-height: 30px;
+  text-align: center;
+  background: green;
+  color: #fff;
+  position: absolute;
+  bottom: 15px;
+  left: 10px;
+  font-family: 'Open Sans';
+}
+
+/* LARGE, INDEX PAGE */
+/* line 311, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #cap-bottom {
+  width: 260px;
+  height: 55px;
+}
+
+/* line 316, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #cap-top {
+  height: 30px;
+  width: 220px;
+}
+
+/* line 321, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #bottle-body {
+  height: 400px;
+  width: 220px;
+}
+
+/* line 326, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #pill-bottle {
+  width: 760px;
+  height: 600px;
+}
+
+/* line 331, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #pill-count {
+  height: 60px;
+  width: 60px;
+  font-size: 30px;
+  line-height: 60px;
+}
+
+/* line 338, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #presc-label {
+  right: -75px;
+  font-size: 30px;
+  top: 140px;
+  width: 230px;
+}
+
+/* line 345, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large .pill {
+  width: 90px;
+  height: 80px;
+}
+
+/* line 350, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large .pill4 {
+  top: 150px;
+}
+
+/* line 354, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large .pill2 {
+  left: 60px;
+  top: 80px;
+}
+
+/* line 359, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large .pill1 {
+  top: 25px;
+}
+
+/* line 363, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #refills {
+  height: 400px;
+}
+
+/* line 367, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #refill,
+#presc-large #edit-presc {
+  width: 65px;
+  height: 65px;
+  font-size: 31px;
+  line-height: 65px !important;
+}
+
+/* line 375, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #pill-panel {
+  width: 65px;
+  right: 60px;
+}
+
+/* line 380, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #bottle-cap {
+  margin-top: 30px;
+}
+
+/* line 384, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #container-footer {
+  display: none;
+}
+
+/* line 388, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large {
+  display: flex;
+  transition: .6s width ease;
+  width: 785px;
+  margin: 0 auto !important;
+}
+
+/* line 395, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large.expanded {
+  width: 100% !important;
+}
+
+/* line 399, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large .doc-message {
+  font-size: 30px;
+  margin: 20px;
+  padding: 30px;
+}
+
+/* line 405, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #no-refills,
+#presc-large #need-refill {
+  width: calc(100% - 180px);
+}
+
+/* line 410, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #presc-reminder {
+  display: block !important;
+  position: absolute;
+  left: -30px;
+  top: -30px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50% !important;
+  z-index: 10;
+}
+
+/* line 421, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #presc-reminder h2 {
+  font-size: 17px;
+}
+
+/* line 425, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-form {
+  width: 100%;
+  height: 600px;
+  color: #222;
+  background: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/tiny_grid.png);
+}
+
+/* line 432, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-form input {
+  width: 50%;
+  height: 30px;
+  border: 5px solid #416173;
+}
+
+/* line 438, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large .rotateOutUpLeft {
+  pointer-events: none;
+}
+
+/* line 442, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #pill-bottle {
+  z-index: 5;
+}
+
+/* line 446, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #presc-form {
+  font-size: 17px;
+  border: 4px solid #416173;
+}
+
+/* line 451, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/prescriptions.scss */
+#presc-large #presc-form input[type="submit"] {
+  background: #416173;
+  color: #fff;
+  height: 40px;
+}
+/* line 6, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/tasks.scss */
+label.done span {
+  text-decoration: line-through;
+}
+/* line 4, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/user_stats.scss */
+.panel-title.dark {
+  color: #676a6c !important;
+}
+
+/* line 8, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/user_stats.scss */
+.panel-body.dark {
+  color: #676a6c !important;
+}
+/* line 1, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.days-left {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 58%;
+  font-size: 30px;
+  color: #fff;
+  text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.95);
+}
+
+/* line 12, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+#cu-0.empty {
+  background-image: url(/assets/physical-empty-3db7bcb0847ebab96b7da21137e4aae09c0f65047c14fcd6045050ef4d561aca.jpg);
+  background-size: contain;
+}
+
+/* line 17, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.physical-img {
+  background-image: url(/assets/physical-icon-6e04199f2bf9d7d2990d1b1ea23b374810f924bfaa997a96e1755b6160e3254a.jpg);
+  background-size: contain;
+}
+
+/* line 22, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+#cu-1.empty {
+  background-image: url(/assets/blood-empty-391e314cf918a25ac40a5b74cfcabf0570aab8f8b6e59e1e5154e70ee8694b5b.jpg);
+  background-size: contain;
+}
+
+/* line 27, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.blood-img {
+  background-image: url(/assets/blood-icon-2f05f71cc6b0e13f93ba3118b336375312e0fff933d0e67263720546c5fe6bd2.jpg);
+  background-size: contain;
+}
+
+/* line 34, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+#cu-2.empty {
+  background-image: url(/assets/dental-empty-5b56c963bd3b6939bb307db0686b217d1bb1da875da333e4908135eed59a6bdb.jpg);
+  background-size: contain;
+}
+
+/* line 39, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.dental-img {
+  background-image: url(/assets/dental-icon-1b12025ee7111011477c5054cf2092cd48ea74c4e983f1b42b1651125c89b22d.jpg);
+  background-size: contain;
+}
+
+/* line 44, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+#cu-3.empty {
+  background-image: url(/assets/optical-empty-5002903df9484712d6d5d0b6edefe734456eba32a5c45574a47cd3ebbe799489.jpg);
+  background-size: contain;
+}
+
+/* line 49, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.optical-img {
+  background-image: url(/assets/optical-icon-40f43c0c3008b489936b32e6f5099f2acb47896aa41c4830621ab64d78177e8b.jpg);
+  background-size: contain;
+}
+
+/* line 54, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.flu_shot-img {
+  background-image: url(/assets/6-f57b8296d9325a4932972dcfccaf14d81d49f68980ead4447bde0bfe9fcd4e7f.jpg);
+}
+
+/* line 58, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.checkup {
+  position: relative;
+  box-shadow: inset 0 0 0 16px rgba(255, 255, 255, 0.6), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* line 65, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.checkup, .active-checkup {
+  position: relative;
+  width: 11em;
+  height: 11em;
+  margin: 10px;
+  border-radius: 50%;
+  position: relative;
+  cursor: default;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+/* line 80, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.checkup .panel, .active-checkup .panel {
+  z-index: 2;
+  padding-bottom: 0;
+  position: relative;
+  top: 100%;
+}
+/* line 85, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.checkup .panel::before, .active-checkup .panel::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  border: 10px solid transparent;
+  border-bottom-color: rgba(63, 147, 147, 0.8);
+  transform: translateX(-50%);
+}
+/* line 96, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.checkup:hover, .active-checkup:hover {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+/* line 101, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.checkup:hover .info, .active-checkup:hover .info {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+  position: absolute;
+}
+/* line 110, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.checkup:hover .info p, .active-checkup:hover .info p {
+  opacity: 1;
+}
+
+/* line 119, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.info {
+  position: absolute;
+  top: -5px;
+  left: -4px;
+  background: rgba(63, 147, 147, 0.8);
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -o-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-backface-visibility: hidden;
+}
+/* line 143, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.info h3 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 17px;
+  text-align: center;
+  line-height: 110px;
+  text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+/* line 153, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.info hr {
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  margin: 0 12px;
+}
+/* line 158, /Users/Zalman/dev/projects/HealthTracker/app/assets/stylesheets/yearly_checkups.scss */
+.info p {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+  opacity: 0;
+  -webkit-transition: all 1s ease-in-out 0.4s;
+  -moz-transition: all 1s ease-in-out 0.4s;
+  -o-transition: all 1s ease-in-out 0.4s;
+  -ms-transition: all 1s ease-in-out 0.4s;
+  transition: all 1s ease-in-out 0.4s;
+}
