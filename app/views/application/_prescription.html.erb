@@ -137,6 +137,7 @@
   getPrescription();
     function getPrescription() {
         $.get("/recent-prescription", function(presc) {
+          debugger
             if(presc == "none") {
                 $("#fill").addClass("invisible");
             } else {
