@@ -10,7 +10,7 @@ class PrescriptionsController < ApplicationController
   # GET /prescriptions/1
   # GET /prescriptions/1.json
   def show
-    puts "show page works!"
+    logger.info "show page works! logger works!"
   end
 
   # GET /prescriptions/new
