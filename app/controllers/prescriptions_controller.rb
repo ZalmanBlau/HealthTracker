@@ -22,7 +22,8 @@ class PrescriptionsController < ApplicationController
     if @prescription.nil?
       render plain: "none"
     else
-      render "show.json"
+      render plain: "none"
+      # render "show.json"
     end
   end
 
