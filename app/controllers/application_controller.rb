@@ -19,4 +19,10 @@ class ApplicationController < ActionController::Base
          devise_parameter_sanitizer.for(:sign_up){ |u| u.permit(:avatar, :phonenumber, :first_name, :last_name, :birthdate, :height, :weight, :gender, :email, :password, :password_confirmation, :home, :work, :school)}        
          devise_parameter_sanitizer.for(:account_update){ |u| u.permit(:avatar, :phonenumber,  :first_name, :last_name, :birthdate, :height, :weight, :gender, :email, :password, :password_confirmation, :current_password, :home, :work, :school)}          
       end
+
+      def authenticate_user!
+        if !user_signed_in?
+          redirect_to login_path, , :notice => 'Please login to continue'
+        end
+      end
 end
