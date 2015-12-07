@@ -20,12 +20,16 @@ class PrescriptionsController < ApplicationController
   def most_recent
   begin
     @prescription = Prescription.where(user_id = current_user.id).last
+    puts "prescription found! line 23"
     if @prescription.nil?
       render plain: "none"
+      puts "prescription none rendered! line 26"
     else
       render "show.json"
+      puts "prescription show.json rendered! line 29"
     end
   rescue StandardError => e
+    puts "something went wrong!"
     puts e.message
   end
   end
