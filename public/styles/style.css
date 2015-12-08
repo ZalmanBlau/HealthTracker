@@ -1721,7 +1721,7 @@ li.dropdown-header {
 
 /* Navigation tabs */
 .right-notifier-tabs,
-.sidebar-nav-profile .dropdown-menu,
+.dropdown-menu,
 .container-navbar .dropdown-menu {
   background: #e7e7e7; }
   .right-notifier-tabs ul.nav-tabs,

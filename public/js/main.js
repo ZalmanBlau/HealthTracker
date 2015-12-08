@@ -68,16 +68,16 @@ $( document ).ready(function() {
     /* *********************************** */
     /*   Show/hide user profile settings   */
     /* *********************************** */
-    $('.sidebar-nav-profile').click(function(){
-        $('.side-nav-profile-settings').slideToggle("fast");
-        if ($('#user-profile-settings-toggler').hasClass('fa-caret-down')) {
-            $('#user-profile-settings-toggler').removeClass('fa-caret-down');
-            $('#user-profile-settings-toggler').addClass('fa-caret-up');
-        } else {
-            $('#user-profile-settings-toggler').addClass('fa-caret-down');
-            $('#user-profile-settings-toggler').removeClass('fa-caret-up');
-        }
-    });
+    // $('.sidebar-nav-profile').click(function(){
+    //     $('.side-nav-profile-settings').slideToggle("fast");
+    //     if ($('#user-profile-settings-toggler').hasClass('fa-caret-down')) {
+    //         $('#user-profile-settings-toggler').removeClass('fa-caret-down');
+    //         $('#user-profile-settings-toggler').addClass('fa-caret-up');
+    //     } else {
+    //         $('#user-profile-settings-toggler').addClass('fa-caret-down');
+    //         $('#user-profile-settings-toggler').removeClass('fa-caret-up');
+    //     }
+    // });
     
     /* *********************** */
     /*  Tooltips and popovers  */

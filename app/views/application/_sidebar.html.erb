@@ -4,7 +4,8 @@
         <ul class="side-nav-top nav">
             <li class="sidebar-nav-logo">
                 <component>sidebar-nav-logo</component>
-                <img src="./../img/sidebar-logo.png" alt="Dee Admin">
+                <!-- change to DashDoc logo -->
+                <!-- <img src="./../img/sidebar-logo.png" alt="Dee Admin"> -->
                 <span class="logo-text">
                     <b>Dash</b>Doc
                 </span>
@@ -16,14 +17,14 @@
                     <img src="<%= current_user.avatar.url %>" alt="<%= current_user.full_name %>">
                 </div>
                 <div class="profile-right">
-                    <span class="name">
-                        <%= current_user.first_name %><i id="user-profile-settings-toggler" class="fa fa-caret-down l-pad-5"></i>
-                    </span>
+                    <div class="name">
+                        <%= current_user.first_name %><!-- <i id="user-profile-settings-toggler" class="fa fa-caret-down l-pad-5"></i> -->
+                    </div>
                 </div>
             </li>
             <% end %>
             <!-- Profile settings -->
-            <li class="side-nav-profile-settings" style="display: none;">
+            <!-- <li class="side-nav-profile-settings" style="display: none;">
                 <ul class="inline-list">
                     <li>
                         <a id="right-notifier-toggler-3"
@@ -78,7 +79,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
             <!-- / Profile settings -->
         </ul>
         <ul id="side-nav" class="side-nav nav">
@@ -92,7 +93,7 @@
                 <% end %>
             </li>
 
-            <li class="@@activate-calendar">
+            <!-- li class="@@activate-calendar">
                 <%= link_to calendar_path do %>
                   <i class="fa fa-calendar-o"></i>
                   <span class="name">Calendar</span>
@@ -111,7 +112,7 @@
                   <i class="fa fa-shield"></i>
                   <span class="name">Checkups</span>
                 <% end %>
-            </li>
+            </li> -->
 
             <li class="@@activate-calendar">
                 <%= link_to tasks_path do %>
@@ -140,7 +141,7 @@
                 <span class="name">Circles</span>
               <% end %>
             </li>
-
+<!-- 
             <li class="@@activate-calendar">
               <%= link_to "#" do %>
                 <i class="fa fa-inbox"></i>
@@ -152,7 +153,7 @@
               <%= link_to "#" do %>
                 <i class="fa fa-cloud"></i>
                 <span class="name">Weather</span>
-              <% end %>
+              <% end %> -->
             </li>
         </ul>
     </div>
