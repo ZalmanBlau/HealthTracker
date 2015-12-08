@@ -56,7 +56,7 @@ class PrescriptionsController < ApplicationController
     @prescription.remainder = params[:amount]
     @prescription.used_refills = 0
     puts "line 58 works"
-    @prescription.first_dose = (params["first_dose(4i)"].to_i * 60) + params["first_dose(5i)"].to_i
+    # @prescription.first_dose = (params["first_dose(4i)"].to_i * 60) + params["first_dose(5i)"].to_i
     puts "line 60 works"
     #converted to minutes
 
