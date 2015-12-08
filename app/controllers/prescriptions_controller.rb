@@ -75,6 +75,7 @@ class PrescriptionsController < ApplicationController
       end
     end
   rescue StandardError => e
+    puts "something went wrong"
     puts e.message
   end
   end
