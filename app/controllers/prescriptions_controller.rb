@@ -45,6 +45,7 @@ class PrescriptionsController < ApplicationController
   # POST /prescriptions
   # POST /prescriptions.json
   def create
+    begin
     @prescription = Prescription.new
     params = prescription_params
 
@@ -73,6 +74,9 @@ class PrescriptionsController < ApplicationController
         format.json { render json: @prescription.errors, status: :unprocessable_entity }
       end
     end
+  rescue StandardError => e
+    puts e.message
+  end
   end
 
   def reduce
