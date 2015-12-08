@@ -48,23 +48,24 @@ class PrescriptionsController < ApplicationController
     begin
     @prescription = Prescription.new
     params = prescription_params
-
+    
     @prescription.name = params[:name]
     @prescription.amount = params[:amount]
     @prescription.dosage = params[:dosage]
     @prescription.refills = params[:refills]
     @prescription.remainder = params[:amount]
     @prescription.used_refills = 0
-
+    puts "line 58 works"
     @prescription.first_dose = (params["first_dose(4i)"].to_i * 60) + params["first_dose(5i)"].to_i
+    puts "line 60 works"
     #converted to minutes
 
     @prescription.frequency = (params["frequency(4i)"].to_i * 60) + params["frequency(5i)"].to_i
     # Currently minutes and seconds, converted to seconds. Multiply by 60 to make it hours and minutes.
-   
+    puts "line 65 works"
     @prescription.user_id = current_user.id
     @prescription.save
-
+    "line 68 works"
     respond_to do |format|
       if @prescription.save
         format.html { redirect_to @prescription, notice: 'Prescription was successfully created.' }
