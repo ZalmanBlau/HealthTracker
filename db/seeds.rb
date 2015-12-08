@@ -22,15 +22,15 @@
 #   {user_id: 5, circle_id: 1},
 #   {user_id: 6, circle_id: 1}
 # ])
-UserStatus.create!([
-  {user_id: 7, status: "Energized"},
-  {user_id: 7, status: "Exhausted"},
-  {user_id: 7, status: "Very Sick"},
-  {user_id: 7, status: "Very Sick"},
-  {user_id: 7, status: "Energized"},
-  {user_id: 7, status: "Energized"},
-  {user_id: 1, status: "Energized"}
-])
+# UserStatus.create!([
+#   {user_id: 7, status: "Energized"},
+#   {user_id: 7, status: "Exhausted"},
+#   {user_id: 7, status: "Very Sick"},
+#   {user_id: 7, status: "Very Sick"},
+#   {user_id: 7, status: "Energized"},
+#   {user_id: 7, status: "Energized"},
+#   {user_id: 1, status: "Energized"}
+# ])
 
 # YearlyCheckup.create!([
 #   {name: "Phyical", location: "Brooklyn", checkup_date: Date.current + 1.month},
@@ -58,172 +58,172 @@ UserStatus.create!([
 #   {appt_type: "Optical", user_id: 4},
 # ])
 
-# UserStat.create!([
-#     {
-#       user_id: 1,
-#       feeling: "Exhausted",
-#       sleep: 910,
-#       calories: 1500,
-#       exercise: 1200,
-#       created_at: DateTime.new(2015,11,2),
-#       updated_at: DateTime.new(2015,11,2)
-#     },
-#     {
-#       user_id: 1,
-#       feeling: "Energized",
-#       sleep: 600,
-#       calories: 500,
-#       exercise: 520,
-#       created_at: DateTime.new(2015,11,3),
-#       updated_at: DateTime.new(2015,11,3)
-#     },
-#     {
-#       user_id: 1,
-#       feeling: "Just Fine",
-#       sleep: 600,
-#       calories: 500,
-#       exercise: 520,
-#       created_at: DateTime.new(2015,11,4),
-#       updated_at: DateTime.new(2015,11,4)
-#     },
-#     {
-#       user_id: 1,
-#       feeling: "Mildly Sick",
-#       sleep: 800,
-#       calories: 250,
-#       exercise: 420,
-#       created_at: DateTime.new(2015,11,5),
-#       updated_at: DateTime.new(2015,11,5)
-#     },
-#     {
-#       user_id: 1,
-#       feeling: "Very Sick",
-#       sleep: 990,
-#       calories: 200,
-#       exercise: 920,
-#       created_at: DateTime.new(2015,11,6),
-#       updated_at: DateTime.new(2015,11,6)
-#     },
-#     {
-#       user_id: 1,
-#       feeling: "Energized",
-#       sleep: 100,
-#       calories: 1000,
-#       exercise: 1520,
-#       created_at: DateTime.new(2015,11,7),
-#       updated_at: DateTime.new(2015,11,7)
-#     },
-#     # User 2
-#     {
-#       user_id: 2,
-#       feeling: "Exhausted",
-#       sleep: 900,
-#       calories: 200,
-#       exercise: 720,
-#       created_at: DateTime.new(2015,11,2),
-#       updated_at: DateTime.new(2015,11,2)
-#     },
-#     {
-#       user_id: 2,
-#       feeling: "Energized",
-#       sleep: 200,
-#       calories: 560,
-#       exercise: 590,
-#       created_at: DateTime.new(2015,11,3),
-#       updated_at: DateTime.new(2015,11,3)
-#     },
-#     {
-#       user_id: 2,
-#       feeling: "Just Fine",
-#       sleep: 900,
-#       calories: 650,
-#       exercise: 908,
-#       created_at: DateTime.new(2015,11,4),
-#       updated_at: DateTime.new(2015,11,4)
-#     },
-#     {
-#       user_id: 2,
-#       feeling: "Mildly Sick",
-#       sleep: 800,
-#       calories: 450,
-#       exercise: 690,
-#       created_at: DateTime.new(2015,11,5),
-#       updated_at: DateTime.new(2015,11,5)
-#     },
-#     {
-#       user_id: 2,
-#       feeling: "Very Sick",
-#       sleep: 400,
-#       calories: 200,
-#       exercise: 320,
-#       created_at: DateTime.new(2015,11,6),
-#       updated_at: DateTime.new(2015,11,6)
-#     },
-#     {
-#       user_id: 2,
-#       feeling: "Energized",
-#       sleep: 1100,
-#       calories: 1050,
-#       exercise: 1250,
-#       created_at: DateTime.new(2015,11,7),
-#       updated_at: DateTime.new(2015,11,7)
-#     },
-#     # User 3
-#     {
-#       user_id: 3,
-#       feeling: "Exhausted",
-#       sleep: 200,
-#       calories: 530,
-#       exercise: 528,
-#       created_at: DateTime.new(2015,11,2),
-#       updated_at: DateTime.new(2015,11,2)
-#     },
-#     {
-#       user_id: 3,
-#       feeling: "Energized",
-#       sleep: 1200,
-#       calories: 900,
-#       exercise: 820,
-#       created_at: DateTime.new(2015,11,3),
-#       updated_at: DateTime.new(2015,11,3)
-#     },
-#     {
-#       user_id: 3,
-#       feeling: "Just Fine",
-#       sleep: 500,
-#       calories: 800,
-#       exercise: 320,
-#       created_at: DateTime.new(2015,11,4),
-#       updated_at: DateTime.new(2015,11,4)
-#     },
-#     {
-#       user_id: 3,
-#       feeling: "Mildly Sick",
-#       sleep: 1060,
-#       calories: 950,
-#       exercise: 200,
-#       created_at: DateTime.new(2015,11,5),
-#       updated_at: DateTime.new(2015,11,5)
-#     },
-#     {
-#       user_id: 3,
-#       feeling: "Very Sick",
-#       sleep: 690,
-#       calories: 650,
-#       exercise: 860,
-#       created_at: DateTime.new(2015,11,6),
-#       updated_at: DateTime.new(2015,11,6)
-#     },
-#     {
-#       user_id: 3,
-#       feeling: "Energized",
-#       sleep: 1110,
-#       calories: 1100,
-#       exercise: 1420,
-#       created_at: DateTime.new(2015,11,7),
-#       updated_at: DateTime.new(2015,11,7)
-#     },
-# ])
+UserStat.create!([
+    {
+      user_id: 1,
+      feeling: "Exhausted",
+      sleep: 910,
+      calories: 1500,
+      exercise: 1200,
+      created_at: DateTime.new(2015,11,2),
+      updated_at: DateTime.new(2015,11,2)
+    },
+    {
+      user_id: 1,
+      feeling: "Energized",
+      sleep: 600,
+      calories: 500,
+      exercise: 520,
+      created_at: DateTime.new(2015,11,3),
+      updated_at: DateTime.new(2015,11,3)
+    },
+    {
+      user_id: 1,
+      feeling: "Just Fine",
+      sleep: 600,
+      calories: 500,
+      exercise: 520,
+      created_at: DateTime.new(2015,11,4),
+      updated_at: DateTime.new(2015,11,4)
+    },
+    {
+      user_id: 1,
+      feeling: "Mildly Sick",
+      sleep: 800,
+      calories: 250,
+      exercise: 420,
+      created_at: DateTime.new(2015,11,5),
+      updated_at: DateTime.new(2015,11,5)
+    },
+    {
+      user_id: 1,
+      feeling: "Very Sick",
+      sleep: 990,
+      calories: 200,
+      exercise: 920,
+      created_at: DateTime.new(2015,11,6),
+      updated_at: DateTime.new(2015,11,6)
+    },
+    {
+      user_id: 1,
+      feeling: "Energized",
+      sleep: 100,
+      calories: 1000,
+      exercise: 1520,
+      created_at: DateTime.new(2015,11,7),
+      updated_at: DateTime.new(2015,11,7)
+    },
+    # User 2
+    {
+      user_id: 2,
+      feeling: "Exhausted",
+      sleep: 900,
+      calories: 200,
+      exercise: 720,
+      created_at: DateTime.new(2015,11,2),
+      updated_at: DateTime.new(2015,11,2)
+    },
+    {
+      user_id: 2,
+      feeling: "Energized",
+      sleep: 200,
+      calories: 560,
+      exercise: 590,
+      created_at: DateTime.new(2015,11,3),
+      updated_at: DateTime.new(2015,11,3)
+    },
+    {
+      user_id: 2,
+      feeling: "Just Fine",
+      sleep: 900,
+      calories: 650,
+      exercise: 908,
+      created_at: DateTime.new(2015,11,4),
+      updated_at: DateTime.new(2015,11,4)
+    },
+    {
+      user_id: 2,
+      feeling: "Mildly Sick",
+      sleep: 800,
+      calories: 450,
+      exercise: 690,
+      created_at: DateTime.new(2015,11,5),
+      updated_at: DateTime.new(2015,11,5)
+    },
+    {
+      user_id: 2,
+      feeling: "Very Sick",
+      sleep: 400,
+      calories: 200,
+      exercise: 320,
+      created_at: DateTime.new(2015,11,6),
+      updated_at: DateTime.new(2015,11,6)
+    },
+    {
+      user_id: 2,
+      feeling: "Energized",
+      sleep: 1100,
+      calories: 1050,
+      exercise: 1250,
+      created_at: DateTime.new(2015,11,7),
+      updated_at: DateTime.new(2015,11,7)
+    },
+    # User 3
+    {
+      user_id: 3,
+      feeling: "Exhausted",
+      sleep: 200,
+      calories: 530,
+      exercise: 528,
+      created_at: DateTime.new(2015,11,2),
+      updated_at: DateTime.new(2015,11,2)
+    },
+    {
+      user_id: 3,
+      feeling: "Energized",
+      sleep: 1200,
+      calories: 900,
+      exercise: 820,
+      created_at: DateTime.new(2015,11,3),
+      updated_at: DateTime.new(2015,11,3)
+    },
+    {
+      user_id: 3,
+      feeling: "Just Fine",
+      sleep: 500,
+      calories: 800,
+      exercise: 320,
+      created_at: DateTime.new(2015,11,4),
+      updated_at: DateTime.new(2015,11,4)
+    },
+    {
+      user_id: 3,
+      feeling: "Mildly Sick",
+      sleep: 1060,
+      calories: 950,
+      exercise: 200,
+      created_at: DateTime.new(2015,11,5),
+      updated_at: DateTime.new(2015,11,5)
+    },
+    {
+      user_id: 3,
+      feeling: "Very Sick",
+      sleep: 690,
+      calories: 650,
+      exercise: 860,
+      created_at: DateTime.new(2015,11,6),
+      updated_at: DateTime.new(2015,11,6)
+    },
+    {
+      user_id: 3,
+      feeling: "Energized",
+      sleep: 1110,
+      calories: 1100,
+      exercise: 1420,
+      created_at: DateTime.new(2015,11,7),
+      updated_at: DateTime.new(2015,11,7)
+    },
+])
 
 # Task.create([
 #     {name: "Check what symptoms my brother has", status: "done"},
